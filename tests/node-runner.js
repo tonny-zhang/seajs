@@ -5,9 +5,9 @@
  *   $ node tests/runner-node.js
  */
 
-require('../lib/sea')
+require('../lib/sea.js')
 
-define('./tests/node-runner', function(require) {
+define('./tests/node-runner', null, function(require) {
   var test = require('./test')
 
   var suites = require('./meta').map(function(suite) {

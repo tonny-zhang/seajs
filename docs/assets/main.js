@@ -1,16 +1,6 @@
 /**
- * Main module for seajs.org
+ * module for seajs.org
  */
-
-seajs.config({
-
-  // Redirect jquery.js to alipay CDN
-  map: [
-      [/^.*\/jquery\.js.*$/, 'https://a.alipayobjects.com/gallery/jquery/1.8.2/jquery.js']
-  ]
-
-})
-
 define(function(require) {
 
   var navs = document.getElementById('nav').getElementsByTagName('a')
@@ -25,7 +15,7 @@ define(function(require) {
 
     'quick-start': function() {
       var iframe = document.getElementById('quick-start-iframe')
-      iframe.src = 'http://seajs.github.com/examples/hello.html'
+      iframe.src = 'http://seajs.github.io/examples/app/hello.html'
 
       require.async('./sh', function(highlight) {
         highlight.init()
@@ -33,14 +23,12 @@ define(function(require) {
     }
   }
 
-
   bindEvents()
   updateView()
   misc()
 
 
   // Helpers
-  // -------
 
   function updateView(pageId) {
     pageId || (pageId = location.hash.substring(1))

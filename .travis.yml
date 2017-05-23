@@ -1,11 +1,10 @@
 language: node_js
 
 node_js:
-  - 0.8
+  - 0.12
 
 before_script:
   - phantomjs --version
 
 script:
-  - make test_local
-  - make test_node
+  - make test

@@ -6,19 +6,19 @@ seajs.config({
   }
 });
 
-define('anywhere-x', function() {
+define('anywhere-x', [], function() {
   return { name: 'x' }
 });
 
-define('biz/d', function(require, exports) {
+define('biz/d', [], function(require, exports) {
   exports.name = 'd'
 });
 
-define('anywhere-x2', function() {
+define('anywhere-x2', [], function() {
   return { name: 'x2' }
 });
 
-define('biz/e', function(require, exports) {
+define('biz/e', [], function(require, exports) {
   exports.name = 'e'
 });
 

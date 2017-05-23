@@ -7,16 +7,19 @@ var testSuites = [
   'specs/module',
   'specs/package',
   'specs/extensible',
-  'specs/extensible/plugin-debug',
-  'specs/extensible/plugin-flush',
 
-  'specs/misc/bootstrap-async',
-  'specs/misc/data-api',
+  'specs/misc/bootstrap',
+  'specs/misc/callback-order',
   'specs/misc/ie-cache',
+  'specs/misc/load-perf',
+  'specs/misc/on-error',
   'specs/misc/utf8-in-gbk',
   'specs/misc/x-ua-compatible',
 
-  'research/derive-uri'
+  'research/derive-uri',
+
+  'specs/standalone',
+  'specs/runtime'
 ]
 
 // For seajs in node
@@ -25,7 +28,7 @@ if (typeof define === 'function') {
     'specs/config',
     'specs/module',
     'specs/package',
-    'specs/extensible'
+    'specs/node'
   ])
 }
 

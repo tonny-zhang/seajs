@@ -32,8 +32,8 @@ define(function(require) {
   var test = require('../../../test')
 
 
-  var configData = seajs.config.data
-  test.assert(configData.map.length === 6, configData.map.length)
+  var data = seajs.data
+  test.assert(data.map.length === 6, data.map.length)
 
 
   var a = require('./a')
@@ -58,10 +58,10 @@ define(function(require) {
   var t3 = require('./timestamp/t3')
   var t4 = require('./timestamp/t4')
 
-  test.assert(t1.name === 'a', 't1.js')
-  test.assert(t2.name === 'b', 't2.js')
-  test.assert(t3.name === 'c', 't3.js')
-  test.assert(t4.name === 'd', 't4.js')
+  test.assert(t1.name === 't1', 't1.js')
+  test.assert(t2.name === 't2', 't2.js')
+  test.assert(t3.name === 't3', 't3.js')
+  test.assert(t4.name === 't4', 't4.js')
   test.assert(find('t1.js').indexOf(TS) > 0, find('t1.js'))
   test.assert(find('t2.js').indexOf(TS) > 0, find('t2.js'))
   test.assert(find('t3.js').indexOf(TS) > 0, find('t3.js'))
@@ -74,7 +74,7 @@ define(function(require) {
     ]})
 
   require.async('./a', function(a) {
-    test.assert(configData.map.length === 7, configData.map.length)
+    test.assert(data.map.length === 7, data.map.length)
     test.assert(a.name === 'a', a.name)
     test.next()
   })

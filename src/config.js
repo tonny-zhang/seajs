@@ -2,45 +2,37 @@
  * config.js - The configuration for the loader
  */
 
-var configData = config.data = {
-  // The root path to use for id2uri parsing
-  base: (function() {
-    var ret = loaderDir
+// The root path to use for id2uri parsing
+data.base = loaderDir
 
-    // If loaderUri is `http://test.com/libs/seajs/[seajs/1.2.3/]sea.js`, the
-    // baseUri should be `http://test.com/libs/`
-    var m = ret.match(/^(.+?\/)(?:seajs\/)+(?:\d[^/]+\/)?$/)
-    if (m) {
-      ret = m[1]
-    }
+// The loader directory
+data.dir = loaderDir
 
-    return ret
-  })(),
+// The loader's full path
+data.loader = loaderPath
 
-  // The charset for requesting files
-  charset: "utf-8",
+// The current working directory
+data.cwd = cwd
 
-  // Modules that are needed to load before all other modules
-  preload: []
+// The charset for requesting files
+data.charset = "utf-8"
 
-  // debug: false - Debug mode
-  // alias - The shorthand alias for module id
-  // vars - The {xxx} variables in module id
-  // map - An array containing rules to map module uri
-  // plugins - An array containing needed plugins
-}
+// @Retention(RetentionPolicy.SOURCE)
+// The CORS options, Don't set CORS on default.
+//
+//data.crossorigin = undefined
 
-function config(data) {
-  for (var key in data) {
-    var curr = data[key]
+// data.alias - An object containing shorthands of module id
+// data.paths - An object containing path shorthands in module id
+// data.vars - The {xxx} variables in module id
+// data.map - An array containing rules to map module uri
+// data.debug - Debug mode. The default value is false
 
-    // Convert plugins to preload config
-    if (curr && key === "plugins") {
-      key = "preload"
-      curr = plugin2preload(curr)
-    }
+seajs.config = function(configData) {
 
-    var prev = configData[key]
+  for (var key in configData) {
+    var curr = configData[key]
+    var prev = data[key]
 
     // Merge object config such as alias, vars
     if (prev && isObject(prev)) {
@@ -49,31 +41,24 @@ function config(data) {
       }
     }
     else {
-      // Concat array config such as map, preload
+      // Concat array config such as map
       if (isArray(prev)) {
         curr = prev.concat(curr)
       }
-      // Make sure that `configData.base` is an absolute directory
+      // Make sure that `data.base` is an absolute path
       else if (key === "base") {
-        curr = normalize(addBase(curr + "/"))
+        // Make sure end with "/"
+        if (curr.slice(-1) !== "/") {
+          curr += "/"
+        }
+        curr = addBase(curr)
       }
 
       // Set config
-      configData[key] = curr
+      data[key] = curr
     }
   }
 
+  emit("config", configData)
   return seajs
 }
-
-seajs.config = config
-
-function plugin2preload(arr) {
-  var ret = [], name
-
-  while ((name = arr.shift())) {
-    ret.push(loaderDir + "plugin-" + name)
-  }
-  return ret
-}
-

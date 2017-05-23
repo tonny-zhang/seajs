@@ -1,25 +1,26 @@
 {
+  "family": "seajs",
   "name": "seajs",
-  "title": "SeaJS",
+  "version": "3.0.2",
   "description": "A Module Loader for the Web",
-  "version": "2.0.0pre",
   "homepage": "http://seajs.org/",
   "keywords": ["module", "loader"],
   "author": "Frank Wang <lifesinger@gmail.com>",
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.12.0"
   },
   "dependencies": {},
   "devDependencies": {
-    "grunt": "0.4.0",
-    "grunt-contrib-concat": "0.1.2",
-    "gcc": "0.2.0"
+    "seatools": "0.5.12"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/seajs/seajs.git"
   },
   "main": "./lib/sea.js",
+  "spm": {
+    "main": "./dist/sea.js"
+  },
   "licenses": [
     {
       "type": "MIT",
